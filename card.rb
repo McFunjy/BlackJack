@@ -1,11 +1,13 @@
-class Card
-  SUITS = ['♣', '♥', '♠', '♦']
-  RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+# frozen_string_literal: true
 
-  attr_reader :card, :points
+class Card
+  SUITS = ['♣', '♥', '♠', '♦'].freeze
+  RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'].freeze
+
+  attr_reader :card, :points, :name
 
   def initialize(rank, suit)
-    @card = "#{rank}#{suit}"
+    @name = "#{rank}#{suit}"
     @points = point(rank)
   end
 
