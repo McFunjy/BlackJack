@@ -7,12 +7,11 @@ class Deck
     @deck = make_deck.shuffle
   end
 
-  def delite_card
+  def take_card
     @deck.pop
   end
 
   def make_deck
-    @deck = []
-    Card::RANKS.product(Card::SUITS).map { |rank, suit| @deck << Card.new(rank, suit) }
+    Card::RANKS.product(Card::SUITS).map { |rank, suit| Card.new(rank, suit) }
   end
 end
