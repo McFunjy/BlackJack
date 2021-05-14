@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'card'
-
 class Deck
   attr_accessor :deck
 
@@ -12,6 +10,8 @@ class Deck
   def take_card
     @deck.pop
   end
+
+  private
 
   def make_deck
     Card::RANKS.product(Card::SUITS).map { |rank, suit| Card.new(rank, suit) }

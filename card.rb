@@ -11,6 +11,8 @@ class Card
     @points = point(rank)
   end
 
+  private
+
   def point(rank)
     return 1 if rank == 'A'
     return 10 if rank.is_a? String
