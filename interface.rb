@@ -15,9 +15,13 @@ class Interface
     puts "============= Раунд №#{num_round} ============"
   end
 
+  def show_cards(player)
+    player.hand.cards.reduce('') { |field, card| field + "#{card.name} " }
+  end
+
   def show_hiden_field(player, dealer)
-    puts "#{player.name}: #{player.show}  [#{player.score}]"
-    puts "#{dealer.name}: #{'xx ' * dealer.hand.size}  [XX]"
+    puts "#{player.name}: #{show_cards(player)}  [#{player.hand.score}]"
+    puts "#{dealer.name}: #{'xx ' * dealer.hand.cards.size}  [XX]"
   end
 
   def show_choices
@@ -33,8 +37,8 @@ class Interface
 
   def show_field(player, dealer)
     puts 'Вскрываемся!'
-    puts "#{player.name}: #{player.show}  [#{player.score}]"
-    puts "#{dealer.name}: #{dealer.show}  [#{dealer.score}]"
+    puts "#{player.name}: #{show_cards(player)}  [#{player.hand.score}]"
+    puts "#{dealer.name}: #{show_cards(dealer)}  [#{dealer.hand.score}]"
   end
 
   def show_draw

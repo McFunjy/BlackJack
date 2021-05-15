@@ -2,7 +2,7 @@
 
 class Dealer < User
   def decision
-    return :open if @hand.size == 3
+    return :open if @hand.cards.size == 3
 
     return :take if take_card?
 
@@ -12,7 +12,7 @@ class Dealer < User
   private
 
   def take_card?
-    return true if @score < 17
+    return true if @hand.score < 17
 
     false
   end

@@ -30,12 +30,12 @@ class Game
   def new_round!
     @num_round += 1
     @deck = Deck.new
-    @player.hand.clear
-    @dealer.hand.clear
+    @player.hand.cards.clear
+    @dealer.hand.cards.clear
     @interface.show_new_round(@num_round)
     make_bets
-    @player.take_card(2, @deck)
-    @dealer.take_card(2, @deck)
+    @player.hand.take_card(2, @deck)
+    @dealer.hand.take_card(2, @deck)
     @interface.show_hiden_field(@player, @dealer)
   end
 
@@ -61,24 +61,24 @@ class Game
   end
 
   def move(player)
-    return :open if player.hand.size == 3
+    return :open if player.hand.cards.size == 3
 
     @interface.show_choices unless player.name == 'Dealer'
     decision = player.decision
     @interface.show_decision(decision, player)
     return :open if decision == :open
 
-    player.take_card(1, @deck) if decision == :take
+    player.hand.take_card(1, @deck) if decision == :take
     @interface.show_hiden_field(@player, @dealer)
   end
 
   def result
-    return :draw if @player.score > 21 && @dealer.score > 21
+    return :draw if @player.hand.score > 21 && @dealer.hand.score > 21
 
-    return @player if @dealer.score > 21
-    return @dealer if @player.score > 21
-    return @player if @player.score > @dealer.score
-    return @dealer if @dealer.score > @player.score
+    return @player if @dealer.hand.score > 21
+    return @dealer if @player.hand.score > 21
+    return @player if @player.hand.score > @dealer.hand.score
+    return @dealer if @dealer.hand.score > @player.hand.score
 
     :draw
   end
